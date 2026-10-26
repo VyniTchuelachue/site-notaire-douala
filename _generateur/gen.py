@@ -24,6 +24,7 @@ PAL = {
  "ochre":       dict(bg="#fffefb", surface="#fbf8f1", tint="#f8f0de", ink="#2a210f", muted="#6a604c", line="#ece4d1", line_strong="#d6caaf", brand="#8f600e", brand_2="#6f4a0a", on_brand="#ffffff", accent="#2d6a8a", dark="#241c0c", on_dark="#faf5e9", on_dark_muted="#cbbf9f"),
  "slate":       dict(bg="#ffffff", surface="#f6f7fa", tint="#edf0f5", ink="#17202e", muted="#5a6475", line="#e2e6ed", line_strong="#c6cdd8", brand="#3c4f7a", brand_2="#26355a", on_brand="#ffffff", accent="#e0b45c", accent_ink="#8a6420", dark="#141d2e", on_dark="#eef1f6", on_dark_muted="#a8b2c4"),
  "harbor":      dict(bg="#ffffff", surface="#f5f8fa", tint="#e9f1f6", ink="#0f2230", muted="#536572", line="#dfe7ec", line_strong="#c0ced7", brand="#1d6896", brand_2="#164f73", on_brand="#ffffff", accent="#f0a04b", accent_ink="#a25e15", dark="#0d1f2c", on_dark="#edf3f7", on_dark_muted="#a3b6c3"),
+ "violet":      dict(bg="#fbfaff", surface="#ffffff", tint="#efeafb", ink="#1a1230", muted="#5d5672", line="#e6e1f2", line_strong="#cbc3e0", brand="#4b2e83", brand_2="#3a2367", on_brand="#ffffff", accent="#c3b1ff", dark="#170f2b", on_dark="#f4f1fb", on_dark_muted="#b3a9cc"),
  "pine":        dict(bg="#ffffff", surface="#f5f8f6", tint="#e9f2ee", ink="#12261f", muted="#536860", line="#dee8e3", line_strong="#bfd0c8", brand="#2e6b55", brand_2="#1f4b3c", on_brand="#ffffff", accent="#d9b35b", accent_ink="#7f6119", dark="#102019", on_dark="#eef5f1", on_dark_muted="#a6bdb3"),
 }
 
@@ -44,6 +45,7 @@ FONTS = {
  "ochre":       ("Sora", "600;700", "Inter", "400;500;600", 600, "-.02em"),
  "slate":       ("Unna", "700", "Hind", "400;500;600", 700, "0"),
  "harbor":      ("IBM Plex Serif", "500;600", "IBM Plex Sans", "400;500;600", 600, "-.01em"),
+ "violet":      ("Space Grotesk", "600;700", "Inter", "400;500;600", 700, "-.03em"),
  "pine":        ("Spectral", "500;600", "Work Sans", "400;500;600", 600, "-.01em"),
 }
 
@@ -122,14 +124,16 @@ def office_intro(s, lang):
         if s.get("since_note"): t += f" Notaire depuis {s['since_note']}."
         if s.get("chamber"): t += " Elle a présidé la Chambre nationale des notaires du Cameroun."
         else: t += " " + T["fr"]["office_member"]
+        if s.get("minutes"): t += f" L'étude conserve les minutes de {s['minutes']} : vous pouvez y demander la copie d'un acte qu'il a reçu."
     else:
         t = f"{s['name']} holds {S.charge_en(s['charge'])}, in {s['quartier']}."
         if s.get("since_note"): t += f" A notary since {s['since_note']}."
         if s.get("chamber"): t += " She has served as President of the National Chamber of Notaries of Cameroon."
         else: t += " " + T["en"]["office_member"]
+        if s.get("minutes"): t += f" The office keeps the records of {s['minutes']}: you can request a copy of a deed he received."
     return t
 
-ABROAD = {"03-grace-nkake-bollanga", "04-dooh-collins-ekollo-regine", "10-nova-notaire-associes", "14-baiye-daniel-bechem"}
+ABROAD = {"01-mongoue-sandrine-demo", "03-grace-nkake-bollanga", "04-dooh-collins-ekollo-regine", "10-nova-notaire-associes", "14-baiye-daniel-bechem"}
 
 # ---------- Photos (Unsplash, licence Unsplash) ----------
 PH = {
@@ -152,7 +156,7 @@ HERO_IMG = {
  "08-nkoue-mawafo-fonkoua-marie-louise": "office_green", "09-mbollo-mbassi-dikongue-anne-marie": "pen_book", "10-nova-notaire-associes": "office_modern",
  "11-moukory-eyango-jean-jacques": "street", "12-enguele-dipanda-gisele": "sign_c", "13-ngalla-joseph": "hand_laptop",
  "14-baiye-daniel-bechem": "library", "15-tongoue-hamedak-jacques": "wouri", "16-wansi-kameni-narcisse": "pen_ink",
- "17-ngo-yon-benga-fride-epoune": "keys_house", "18-nzue-rose-biteck-lima": "pen_black",
+ "17-ngo-yon-benga-fride-epoune": "keys_house", "01-mongoue-sandrine-demo": "sign_b", "18-nzue-rose-biteck-lima": "pen_black",
 }
 SVC_POOL = {
  "terrain": ["keys_house", "brick_house", "keys"], "succession": ["family_house", "books_old", "pen_book"],

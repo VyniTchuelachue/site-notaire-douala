@@ -128,6 +128,7 @@ T = {
     "bilingual": {"title": "Un site en français et en anglais", "lead": "Toutes les informations de l'étude sont publiées dans les deux langues officielles, pour que chaque client prépare son dossier dans la langue qu'il lit le mieux."},
     "bonaberi": {"title": "Votre notaire à Bonabéri", "lead": "Sur la rive gauche du Wouri : pour les habitants de Bonabéri et de ses environs, un notaire tout proche, sans traverser le pont."},
     "email": {"title": "Au cœur de Bonanjo", "lead": "L'étude est installée rue de la Chambre de commerce, au cœur du quartier administratif et des affaires de Douala."},
+    "diaspora": {"title": "Pour les Camerounais de l'étranger", "lead": "Acheter un terrain au pays, régler une succession, signer un contrat de mariage franco-camerounais : l'étude reçoit à Akwa et suit aussi les dossiers à distance, par procuration.", "score_label": "sur Google", "reviews_label": "avis", "link": "Voir les avis sur Google"},
     "visibility": None,
   },
   "since_label": "Notaire depuis",
@@ -257,6 +258,7 @@ T = {
     "bilingual": {"title": "A site in English and French", "lead": "All the office's information is published in both official languages, so every client can prepare their file in the language they read best."},
     "bonaberi": {"title": "Your notary in Bonabéri", "lead": "On the left bank of the Wouri: for residents of Bonabéri and the surrounding area, a notary close by, without crossing the bridge."},
     "email": {"title": "In the heart of Bonanjo", "lead": "The office is on rue de la Chambre de commerce, in the heart of Douala's administrative and business district."},
+    "diaspora": {"title": "For Cameroonians abroad", "lead": "Buying land back home, settling an estate, signing a Franco-Cameroonian marriage contract: the office sees you in Akwa and also handles files remotely, by power of attorney.", "score_label": "on Google", "reviews_label": "reviews", "link": "See the reviews on Google"},
     "visibility": None,
   },
   "since_label": "Notary since",
@@ -281,6 +283,7 @@ HERO = {
   "15-tongoue-hamedak-jacques": ("Votre notaire à Bonabéri, au carrefour Fokou.", "Your notary in Bonabéri, at Carrefour Fokou."),
   "16-wansi-kameni-narcisse": ("Le notaire de la rive gauche du Wouri.", "The notary on the left bank of the Wouri."),
   "17-ngo-yon-benga-fride-epoune": ("Votre notaire à Bonambappè, Bonabéri.", "Your notary in Bonambappè, Bonabéri."),
+  "01-mongoue-sandrine-demo": ("Votre notaire à Akwa, et à distance pour la diaspora.", "Your notary in Akwa, and remotely for Cameroonians abroad."),
   "18-nzue-rose-biteck-lima": ("Vos projets de vie, authentifiés à Bali.", "Your life projects, authenticated in Bali."),
 }
 

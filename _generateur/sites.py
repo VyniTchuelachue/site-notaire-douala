@@ -182,6 +182,18 @@ RAW = [
        email="etudenotairelimarose@yahoo.com", maps=None,
        theme="prestige", palette="aubergine", angle="visibility",
        research=["Almanach 2019 (à confirmer) : B.P. 5066 Douala ; « détenteur des minutes de Maîtres Elise LOTTIN et EBONGUE Ernest » — si confirmé, ajouter un service « copies d'actes anciens » comme pour Me Mongoue."]),
+  dict(slug="01-mongoue-sandrine-demo", prio="A", first="Sandrine", last="MONGOUE",
+       charge="Douala 9e charge", quartier="Akwa",
+       address="581 boulevard de la Liberté, immeuble CCA, face à la Pharmacie du Centre",
+       addr_en="581 boulevard de la Liberté, CCA building, opposite the Pharmacie du Centre",
+       phones="", email="", maps="Notaire Sandrine Mongoue Douala",
+       rating="4,6", rating_en="4.6", reviews=8,
+       theme="moderne", palette="violet", angle="diaspora",
+       since_note="2017", minutes="Maître MBOBDA MONGOUE Elie",
+       research=["Google Maps : 4,6 (8 avis) — clients de la diaspora, mariages franco-camerounais, création d'entreprise.",
+                 "Domaine smnotaire.com déjà acheté mais vide (page d'hébergeur) : ce site peut y être publié tel quel.",
+                 "Liste de la Chambre (2019), reprise du site React existant : 9e charge de Douala depuis le 23 juin 2017, B.P. 5374, détentrice des minutes de Maître MBOBDA MONGOUE Elie.",
+                 "Le site React/Vite existant reste dans le dossier 01-mongoue-sandrine (projet Vercel notaire-me-mongoue)."]),
 ]
 
 def sheet_rows():

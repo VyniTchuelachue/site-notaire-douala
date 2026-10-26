@@ -162,7 +162,7 @@
 {% if A %}
 <section class="section angle angle--{{ s.angle }}{% if s.angle == 'bonaberi' %} has-photo{% endif %}" id="atout"{% if s.angle == 'bonaberi' %} style="--photo:url('{{ U(IMG.wouri, 2000) }}')"{% endif %}>
   <div class="wrap">
-  {% if s.angle in ('reviews', 'social') %}
+  {% if s.angle in ('reviews', 'social', 'diaspora') %}
     <div class="angle__grid">
       <div><h2>{{ A.title }}</h2><p class="lead">{{ A.lead }}</p>
         <a class="link-arrow" href="{{ s.map_link }}" target="_blank" rel="noopener">{{ A.link }}</a></div>

@@ -7,6 +7,7 @@ Ce sont des maquettes de prospection : bandeau « Maquette de démonstration » 
 | Dossier | Priorité | Étude | Quartier | Thème |
 |---|---|---|---|---|
 | `01-mongoue-sandrine` | A | Maître Sandrine MONGOUE | Akwa | Site React/Vite existant (repo Notaire-Me-MONGOUE-Sandrine) |
+| `01-mongoue-sandrine-demo` | A | Maître Sandrine MONGOUE | Akwa | Nouvelle version (générateur) · moderne · violet |
 | `02-njongue-etame-florence` | A | Maître Florence NJONGUE ETAME | Bonanjo | institutionnel · slate |
 | `03-grace-nkake-bollanga` | A | Maître Grâce NKAKE BOLLANGA | Ndogbat / Japoma | notaria · emerald |
 | `04-dooh-collins-ekollo-regine` | A | Maître Régine DOOH COLLINS | Bonanjo | prestige · navy-gold |
@@ -47,6 +48,7 @@ Chaque projet Vercel est relié à ce dépôt GitHub (dossier racine = le dossie
 | Dossier | Lien |
 |---|---|
 | `01-mongoue-sandrine` | projet Vercel existant `notaire-me-mongoue` |
+| `01-mongoue-sandrine-demo` | https://notaire-01-mongoue.vercel.app |
 | `02-njongue-etame-florence` | https://notaire-02-njongue-etame.vercel.app |
 | `03-grace-nkake-bollanga` | https://notaire-03-nkake-bollanga.vercel.app |
 | `04-dooh-collins-ekollo-regine` | https://notaire-04-dooh-collins.vercel.app |
