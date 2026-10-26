@@ -39,3 +39,28 @@ Ce sont des maquettes de prospection : bandeau « Maquette de démonstration » 
 - Me ALAM EBOUTOU : l'almanach 2019 la place dans le bloc Yaoundé ; vérifier la charge et l'adresse à Douala.
 - Nova Notaire & Associés : nom du notaire titulaire inconnu.
 - Pour toutes les études : le mobile affiché comme WhatsApp est-il bien sur WhatsApp ?
+
+## Sites en ligne (Vercel, équipe Tchuelachue)
+
+Chaque projet Vercel est relié à ce dépôt GitHub (dossier racine = le dossier de l'étude) : un push sur `main` met les sites à jour automatiquement.
+
+| Dossier | Lien |
+|---|---|
+| `01-mongoue-sandrine` | projet Vercel existant `notaire-me-mongoue` |
+| `02-njongue-etame-florence` | https://notaire-02-njongue-etame.vercel.app |
+| `03-grace-nkake-bollanga` | https://notaire-03-nkake-bollanga.vercel.app |
+| `04-dooh-collins-ekollo-regine` | https://notaire-04-dooh-collins.vercel.app |
+| `05-alam-eboutou-marquise` | https://notaire-05-alam-eboutou.vercel.app |
+| `06-kamako-biabo-evelyne` | https://notaire-06-kamako-biabo.vercel.app |
+| `07-nkono-lunduobe-marie-jeanne` | https://notaire-07-nkono-lunduobe.vercel.app |
+| `08-nkoue-mawafo-fonkoua-marie-louise` | https://notaire-08-mawafo-fonkoua.vercel.app |
+| `09-mbollo-mbassi-dikongue-anne-marie` | https://notaire-09-mbollo-mbassi.vercel.app |
+| `10-nova-notaire-associes` | https://notaire-10-nova-associes.vercel.app |
+| `11-moukory-eyango-jean-jacques` | https://notaire-11-moukory-eyango.vercel.app |
+| `12-enguele-dipanda-gisele` | https://notaire-12-enguele-dipanda.vercel.app |
+| `13-ngalla-joseph` | https://notaire-13-ngalla.vercel.app |
+| `14-baiye-daniel-bechem` | https://notaire-14-baiye.vercel.app |
+| `15-tongoue-hamedak-jacques` | https://notaire-15-tongoue-hamedak.vercel.app |
+| `16-wansi-kameni-narcisse` | https://notaire-16-wansi-kameni.vercel.app |
+| `17-ngo-yon-benga-fride-epoune` | https://notaire-17-ngo-yon-benga.vercel.app |
+| `18-nzue-rose-biteck-lima` | https://notaire-18-nzue-biteck-lima.vercel.app |
