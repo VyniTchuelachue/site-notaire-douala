@@ -1,0 +1,61 @@
+{% import 'macros.html' as m with context %}
+<!doctype html>
+<html lang="{{ t.lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page_title }}</title>
+<meta name="description" content="{{ meta_desc }}">
+<meta name="robots" content="noindex, nofollow">
+<link rel="alternate" hreflang="{{ other_hreflang }}" href="{{ other_href }}">
+<link rel="icon" href="{{ root }}assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="stylesheet" href="{{ fonts_url }}">
+<link rel="stylesheet" href="{{ root }}assets/style.css">
+</head>
+<body class="theme-{{ s.theme }} page-{{ page }}">
+<a class="skip" href="#main">{{ t.skip }}</a>
+<div class="demo-ribbon" role="note">{{ t.demo }}</div>
+{% if s.theme == 'notaria' %}
+<div class="quickbar">
+  <div class="wrap quickbar__in">
+    <a href="{{ s.phones[0].href }}">{{ m.icon('phone') }}<span class="qb-long">{{ s.phones[0].label }}</span><span class="qb-short">{{ 'Appeler' if t.lang=='fr' else 'Call' }}</span></a>
+    {% if s.whatsapp %}<a href="https://wa.me/{{ s.whatsapp }}" target="_blank" rel="noopener">{{ m.icon('chat') }}<span>WhatsApp</span></a>{% endif %}
+    <a href="{{ P.contact }}">{{ m.icon('calendar') }}<span class="qb-long">{{ t.cta_rdv }}</span><span class="qb-short">{{ 'Rendez-vous' if t.lang=='fr' else 'Appointment' }}</span></a>
+    <a href="{{ s.map_link }}" target="_blank" rel="noopener">{{ m.icon('pin') }}<span>{{ t.cta_route }}</span></a>
+  </div>
+</div>
+{% endif %}
+<header class="site-header" data-header>
+  <div class="wrap site-header__in">
+    <a class="brand" href="{{ P.home }}" aria-label="{{ s.name }}">
+      <span class="brand__seal" aria-hidden="true">{{ seal | safe }}</span>
+      <span class="brand__text"><strong>{{ s.brand }}</strong><small>{{ m.role(s, t) }}</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" data-nav-toggle><span class="nav-toggle__bar"></span><span class="sr">{{ t.menu }}</span></button>
+    <nav id="nav" class="nav" aria-label="Navigation">
+      <ul>
+        {% for key, href, label in NAV %}{% if key != 'home' %}<li><a href="{{ href }}"{% if key == page %} aria-current="page"{% endif %}>{{ label }}</a></li>{% endif %}{% endfor %}
+      </ul>
+      <a class="nav__lang" href="{{ other_href }}" hreflang="{{ other_hreflang }}" lang="{{ other_hreflang }}">{{ t.other_lang }}</a>
+      <a class="btn btn--primary nav__cta" href="{{ P.contact }}">{{ t.cta_rdv }}</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+{% block content %}{% endblock %}
+</main>
+<footer class="site-footer">
+  <div class="wrap site-footer__in">
+    <div class="site-footer__brand"><span class="brand__seal" aria-hidden="true">{{ seal | safe }}</span><div><strong>{{ s.name }}</strong><br>{{ m.role(s, t) }}{% if s.charge %}, {{ m.charge(s, t) }}{% endif %}</div></div>
+    <ul class="site-footer__nav">{% for key, href, label in NAV %}<li><a href="{{ href }}">{{ label }}</a></li>{% endfor %}</ul>
+    <p>{{ m.addr(s, t) }}<br>{% for p in s.phones %}<a href="{{ p.href }}">{{ p.label }}</a>{% if not loop.last %} · {% endif %}{% endfor %}{% if s.email %}<br><a href="mailto:{{ s.email }}">{{ s.email }}</a>{% endif %}</p>
+  </div>
+  <div class="wrap site-footer__small"><p>{{ t.footer_disclaimer }} {{ credits }} · <a href="{{ other_href }}" hreflang="{{ other_hreflang }}">{{ t.other_label }}</a></p></div>
+</footer>
+<script id="site-data" type="application/json">{{ js_data | safe }}</script>
+<script src="{{ root }}assets/site.js" defer></script>
+</body>
+</html>

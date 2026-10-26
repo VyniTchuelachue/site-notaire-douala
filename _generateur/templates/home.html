@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ m.hero(s, t, P, H, hero_txt, seal, IMG) }}
+{{ m.angle(s, t, IMG) }}
+{% if s.theme in ('prestige', 'editorial') %}{{ m.notary(t) }}{% endif %}
+{{ m.services_overview(s, t, P, H, IMG) }}
+{{ m.band(H.docs_band_title, H.docs_band_text, H.docs_band_cta, P.docs, IMG.band) }}
+{{ m.steps(t) }}
+{{ m.office(s, t, H, office_intro, seal, IMG, full=False, more_href=P.office) }}
+{{ m.faq(t, t.faq[:3], True, P.faq, H.faq_cta) }}
+{{ m.contact_band(s, t, P, H) }}
+{% endblock %}

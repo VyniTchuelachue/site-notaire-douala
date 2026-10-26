@@ -1,0 +1,41 @@
+# Notaires de Douala — 18 sites de démonstration
+
+Un dossier par étude. Pour voir un site : ouvrir le dossier, double-cliquer sur `index.html`.
+Chaque site est bilingue (FR/EN) et compte six pages par langue : accueil, domaines (détail des actes), pièces à fournir (cases à cocher envoyées sur WhatsApp ou par e-mail), l'étude, questions fréquentes, contact (carte et formulaire). Photos d'illustration Unsplash (licence Unsplash), sans visage reconnaissable ; il faut être connecté à internet pour les voir.
+Ce sont des maquettes de prospection : bandeau « Maquette de démonstration » en haut, pages non indexées (`noindex`, `robots.txt`). Ne pas les mettre en ligne sous le nom d'une étude avant accord.
+
+| Dossier | Priorité | Étude | Quartier | Thème |
+|---|---|---|---|---|
+| `01-mongoue-sandrine` | A | Maître Sandrine MONGOUE | Akwa | Site React/Vite existant (repo Notaire-Me-MONGOUE-Sandrine) |
+| `02-njongue-etame-florence` | A | Maître Florence NJONGUE ETAME | Bonanjo | institutionnel · slate |
+| `03-grace-nkake-bollanga` | A | Maître Grâce NKAKE BOLLANGA | Ndogbat / Japoma | notaria · emerald |
+| `04-dooh-collins-ekollo-regine` | A | Maître Régine DOOH COLLINS | Bonanjo | prestige · navy-gold |
+| `05-alam-eboutou-marquise` | B | Maître Marquise ALAM EBOUTOU | Bonanjo | editorial · burgundy |
+| `06-kamako-biabo-evelyne` | B | Maître Evelyne KAMAKO BIABO | Akwa | accueil · teal |
+| `07-nkono-lunduobe-marie-jeanne` | B | Maître Marie Jeanne NKONO LUNDUOBE | Akwa | notaria · cobalt |
+| `08-nkoue-mawafo-fonkoua-marie-louise` | B | Maître Marie Louise MAWAFO FONKOUA | Akwa | prestige · forest-brass |
+| `09-mbollo-mbassi-dikongue-anne-marie` | B | Maître Anne Marie MBOLLO MBASSI | Bali | editorial · terracotta |
+| `10-nova-notaire-associes` | B | Nova Notaire & Associés | Akwa / Bonabekombo | moderne · ink-lime |
+| `11-moukory-eyango-jean-jacques` | C | Maître Jean Jacques MOUKORY EYANGO | Ndokoti | institutionnel · harbor |
+| `12-enguele-dipanda-gisele` | C | Maître Gisèle ENGUELE DIPANDA | Ndokoti | accueil · sun |
+| `13-ngalla-joseph` | C | Maître Joseph NGALLA | Deido / Bassa | notaria · ochre |
+| `14-baiye-daniel-bechem` | C | Maître Daniel Bechem BAIYE | Bonamoussadi | moderne · night-coral |
+| `15-tongoue-hamedak-jacques` | C | Maître Jacques TONGOUE HAMEDAK | Bonabéri | institutionnel · pine |
+| `16-wansi-kameni-narcisse` | C | Maître Narcisse WANSI KAMENI | Bonabéri | editorial · harbor-sand |
+| `17-ngo-yon-benga-fride-epoune` | C | Maître Fride NGO YON BENGA épouse EPOUNE | Bonambappè | accueil · mauve |
+| `18-nzue-rose-biteck-lima` | C | Maître Rose NZUE BITECK LIMA | Bali | prestige · aubergine |
+
+## Ce qui vient d'où
+- Coordonnées : fiche de prospection (Drive), vérifiée le 19/10/2026. Les téléphones et e-mails des pages sont contrôlés automatiquement contre la fiche.
+- Recherche complémentaire du 26/10/2026 : notée dans le `CLAUDE.md` de chaque dossier.
+- Rien d'inventé : pas de biographie, horaires, avis ou photos. Les manques sont des « emplacements réservés ».
+
+## Modifier
+- Petite retouche d'un site : éditer ses deux pages HTML (ou demander à Claude en ouvrant le dossier).
+- Retouche commune aux 17 sites : `_generateur/` (Python + Jinja2), voir son README.
+
+## Points à vérifier en priorité
+- Me DOOH COLLINS : la fiche dit « ex-présidente » de la Chambre ; Cameroon Tribune la présentait encore comme présidente en juillet 2025. Le site écrit « a présidé ».
+- Me ALAM EBOUTOU : l'almanach 2019 la place dans le bloc Yaoundé ; vérifier la charge et l'adresse à Douala.
+- Nova Notaire & Associés : nom du notaire titulaire inconnu.
+- Pour toutes les études : le mobile affiché comme WhatsApp est-il bien sur WhatsApp ?

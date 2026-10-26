@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ m.page_hero(s, t, P, PI.office[0], PI.office[1], IMG.banner.office, NAV[0][2]) }}
+{{ m.office(s, t, H, office_intro, seal, IMG, full=True) }}
+{% if s.angle in ('institution', 'expertise', 'team') %}{{ m.angle(s, t, IMG) }}{% endif %}
+{{ m.notary(t) }}
+{% if s.abroad %}{{ m.abroad(t) }}{% endif %}
+{{ m.contact_band(s, t, P, H) }}
+{% endblock %}

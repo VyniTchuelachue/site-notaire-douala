@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ m.page_hero(s, t, P, PI.docs[0], PI.docs[1], IMG.banner.docs, NAV[0][2]) }}
+<section class="section prep"><div class="wrap"><ol class="mini-steps">{% for h, p in t.angle.documents.points %}<li><strong>{{ h }}</strong><span>{{ p }}</span></li>{% endfor %}</ol></div></section>
+{{ m.docs(s, t) }}
+{{ m.contact_band(s, t, P, H) }}
+{% endblock %}

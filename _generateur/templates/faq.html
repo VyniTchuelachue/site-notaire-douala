@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ m.page_hero(s, t, P, PI.faq[0], PI.faq[1], IMG.banner.faq, NAV[0][2]) }}
+{{ m.faq(t, faq_all, False) }}
+{{ m.contact_band(s, t, P, H) }}
+{% endblock %}

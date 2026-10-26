@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ m.page_hero(s, t, P, PI.services[0], PI.services[1], IMG.banner.services, NAV[0][2]) }}
+{{ m.services_detail(s, t, IMG, DET, DL) }}
+{% if s.abroad %}{{ m.abroad(t) }}{% endif %}
+{{ m.steps(t) }}
+{{ m.contact_band(s, t, P, H) }}
+{% endblock %}

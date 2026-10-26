@@ -1,0 +1,396 @@
+{% macro icon(name) %}{{ ICONS[name] | safe }}{% endmacro %}
+{% macro charge(s, t) %}{{ (s.charge_fr if t.lang=='fr' else s.charge_en) | safe }}{% endmacro %}
+{% macro role(s, t) %}{{ s.role_fr if t.lang == 'fr' else s.role_en }}{% endmacro %}
+{% macro addr(s, t) %}{{ s.full_address if t.lang=='fr' else s.full_address_en }}{% endmacro %}
+
+{# ---------------- HERO (accueil) ---------------- #}
+{% macro hero(s, t, P, H, hero_txt, seal, IMG) %}
+{% if s.theme == 'prestige' %}
+<section class="hero hero--prestige has-photo" style="--photo:url('{{ U(IMG.hero, 2000) }}')">
+  <div class="wrap hero__in">
+    <p class="eyebrow">{{ t.eyebrow_office }}</p>
+    <h1>{{ s.name }}</h1>
+    {% if s.charge %}<p class="hero__charge"><span class="rule"></span><span>{{ charge(s, t) }}</span><span class="rule"></span></p>{% endif %}
+    <p class="hero__lead">{{ hero_txt }}</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="{{ P.contact }}">{{ t.cta_rdv }}</a>
+      <a class="btn btn--ghost" href="{{ P.docs }}">{{ t.cta_prepare }}</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <dl class="factstrip">
+      <div><dt>{{ t.facts.area }}</dt><dd>{{ s.quartier }}, Douala</dd></div>
+      <div><dt>{{ t.facts.address }}</dt><dd>{{ s.address if t.lang=='fr' else s.addr_en }}</dd></div>
+      <div><dt>{{ t.facts.phone }}</dt><dd><a href="{{ s.phones[0].href }}">{{ s.phones[0].label }}</a></dd></div>
+    </dl>
+  </div>
+</section>
+
+{% elif s.theme == 'editorial' %}
+<section class="hero hero--editorial">
+  <div class="wrap hero__grid">
+    <div>
+      <p class="eyebrow">{{ s.name }} · {{ role(s, t) }}</p>
+      <h1>{{ hero_txt }}</h1>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="{{ P.contact }}">{{ t.cta_rdv }} {{ icon('arrow') }}</a>
+        <a class="link-arrow" href="{{ P.services }}">{{ t.services_title }}</a>
+      </div>
+    </div>
+    <aside class="hero__card">
+      <span class="hero__seal" aria-hidden="true">{{ seal | safe }}</span>
+      <dl>
+        {% if s.charge %}<dt>{{ t.facts.charge }}</dt><dd>{{ charge(s, t) }}</dd>{% endif %}
+        {% if s.since_note %}<dt>{{ t.facts.since }}</dt><dd>{{ s.since_note }}</dd>{% endif %}
+        <dt>{{ t.facts.address }}</dt><dd>{{ addr(s, t) }}</dd>
+        <dt>{{ t.facts.phone }}</dt><dd><a href="{{ s.phones[0].href }}">{{ s.phones[0].label }}</a></dd>
+      </dl>
+    </aside>
+  </div>
+  <div class="wrap"><figure class="hero__photo"><img src="{{ U(IMG.hero, 1800) }}" alt="" loading="eager"><figcaption>{{ H.photo_note }}</figcaption></figure></div>
+</section>
+
+{% elif s.theme == 'moderne' %}
+<section class="hero hero--moderne has-photo" style="--photo:url('{{ U(IMG.hero, 2000) }}')">
+  <div class="wrap">
+    <p class="eyebrow">{{ t.eyebrow_office }} · Douala{% if s.charge %} · {{ charge(s, t) }}{% endif %}</p>
+    <h1 class="hero__giant">{{ s.brand }}</h1>
+    <div class="hero__row">
+      <p class="hero__lead">{{ hero_txt }}</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="{{ P.contact }}">{{ t.cta_rdv }} {{ icon('arrow') }}</a>
+        {% if s.whatsapp %}<a class="btn btn--ghost" href="https://wa.me/{{ s.whatsapp }}" target="_blank" rel="noopener">{{ icon('chat') }} WhatsApp</a>{% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true"><div class="ticker__track">{% for i in range(2) %}{% for k, title, _ in t.services %}<span>{{ title }}</span>{% endfor %}{% endfor %}</div></div>
+</section>
+
+{% elif s.theme == 'accueil' %}
+<section class="hero hero--accueil">
+  <div class="wrap hero__grid">
+    <div>
+      <p class="pill">{{ icon('pin') }} {{ s.quartier }}, Douala{% if s.saturday %} · <strong>{{ t.angle.saturday.badge }}</strong>{% endif %}</p>
+      <h1>{{ s.name }}</h1>
+      <p class="hero__role">{{ role(s, t) }}{% if s.charge %} — {{ charge(s, t) }}{% endif %}</p>
+      <p class="hero__lead">{{ hero_txt }}</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="{{ P.contact }}">{{ t.cta_rdv }}</a>
+        <a class="btn btn--soft" href="{{ P.docs }}">{{ t.cta_prepare }}</a>
+      </div>
+    </div>
+    <div class="hero__art">
+      <img class="hero__img" src="{{ U(IMG.hero, 1100) }}" alt="" loading="eager">
+      <div class="hero__seal" aria-hidden="true">{{ seal | safe }}</div>
+      <div class="hero__chip hero__chip--a" aria-hidden="true">{{ icon('file') }} {{ t.docs_title }}</div>
+      <div class="hero__chip hero__chip--b" aria-hidden="true">{{ icon('check') }} {{ t.steps[4][0] }}</div>
+    </div>
+  </div>
+</section>
+
+{% elif s.theme == 'notaria' %}
+<section class="hero hero--notaria">
+  <div class="wrap hero__grid">
+    <div>
+      <p class="eyebrow">{{ t.eyebrow_office }} · Douala</p>
+      <h1>{{ s.name }}</h1>
+      <p class="hero__role">{{ role(s, t) }}{% if s.charge %}, {{ charge(s, t) }}{% endif %}</p>
+      <p class="hero__lead">{{ hero_txt }}</p>
+      <p class="hero__addr">{{ icon('pin') }} <span>{{ addr(s, t) }}</span> <a href="{{ s.map_link }}" target="_blank" rel="noopener">{{ t.cta_route }}</a></p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="{{ P.contact }}">{{ t.cta_rdv }}</a>
+        <a class="btn btn--ghost" href="{{ P.docs }}">{{ t.cta_prepare }}</a>
+      </div>
+    </div>
+    <div class="hero__panel">
+      <img class="hero__panel-img" src="{{ U(IMG.hero, 1000) }}" alt="" loading="eager">
+      {% if s.rating %}
+      <a class="score" href="{{ s.map_link }}" target="_blank" rel="noopener">
+        <span class="score__num">{{ s.rating if t.lang=='fr' else s.rating_en }}</span>
+        <span class="score__stars" aria-hidden="true">★★★★★</span>
+        <span class="score__txt">{{ s.reviews }} {{ t.angle.reviews.reviews_label }} {{ t.angle.reviews.score_label }}</span>
+      </a>
+      {% endif %}
+      <ul class="hero__quick">
+        {% for k, tab, title, items in t.docs[:4] %}<li><a href="{{ P.docs }}#{{ k }}">{{ icon('file') }}<span>{{ title }}</span>{{ icon('arrow') }}</a></li>{% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% elif s.theme == 'institutionnel' %}
+<section class="hero hero--inst">
+  <div class="hero__split">
+    <div class="hero__brandside has-photo" style="--photo:url('{{ U(IMG.hero, 1600) }}')">
+      <div class="hero__in">
+        <p class="eyebrow">{{ t.eyebrow_office }}</p>
+        <h1>{{ s.name }}</h1>
+        <p class="hero__role">{{ role(s, t) }}{% if s.charge %} · {{ charge(s, t) }}{% endif %}</p>
+        <p class="hero__lead">{{ hero_txt }}</p>
+        <div class="hero__actions">
+          <a class="btn btn--light" href="{{ P.contact }}">{{ t.cta_rdv }}</a>
+          <a class="btn btn--outline-light" href="{{ s.phones[0].href }}">{{ icon('phone') }} {{ s.phones[0].label }}</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero__access">
+      <p class="hero__access-title">{{ t.docs_title }}</p>
+      <ul>
+        {% for k, tab, title, items in t.docs %}<li><a href="{{ P.docs }}#{{ k }}"><span class="num">{{ '%02d' % loop.index }}</span><span>{{ title }}</span>{{ icon('arrow') }}</a></li>{% endfor %}
+      </ul>
+      <p class="hero__access-addr">{{ icon('pin') }} {{ addr(s, t) }}</p>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endmacro %}
+
+{# ---------------- En-tête des pages intérieures ---------------- #}
+{% macro page_hero(s, t, P, title, intro, photo, crumbs_home) %}
+<section class="page-hero" style="--photo:url('{{ U(photo, 2000) }}')">
+  <div class="wrap page-hero__in">
+    <nav class="crumbs" aria-label="{{ 'Fil d’Ariane' if t.lang=='fr' else 'Breadcrumb' }}"><a href="{{ P.home }}">{{ crumbs_home }}</a><span aria-hidden="true">/</span><span>{{ title }}</span></nav>
+    <h1>{{ title }}</h1>
+    <p class="page-hero__lead">{{ intro }}</p>
+  </div>
+</section>
+{% endmacro %}
+
+{# ---------------- Bloc « atout » ---------------- #}
+{% macro angle(s, t, IMG) %}
+{% set A = t.angle[s.angle] if s.angle in t.angle else None %}
+{% if A %}
+<section class="section angle angle--{{ s.angle }}{% if s.angle == 'bonaberi' %} has-photo{% endif %}" id="atout"{% if s.angle == 'bonaberi' %} style="--photo:url('{{ U(IMG.wouri, 2000) }}')"{% endif %}>
+  <div class="wrap">
+  {% if s.angle in ('reviews', 'social') %}
+    <div class="angle__grid">
+      <div><h2>{{ A.title }}</h2><p class="lead">{{ A.lead }}</p>
+        <a class="link-arrow" href="{{ s.map_link }}" target="_blank" rel="noopener">{{ A.link }}</a></div>
+      <a class="bigscore" href="{{ s.map_link }}" target="_blank" rel="noopener">
+        <span class="bigscore__num">{{ s.rating if t.lang=='fr' else s.rating_en }}</span><span class="bigscore__max">/5</span>
+        <span class="bigscore__stars" aria-hidden="true">★★★★★</span>
+        <span class="bigscore__txt">{{ s.reviews }} {{ A.reviews_label }} {{ A.score_label }}</span>
+      </a>
+    </div>
+    {% if A.placeholder %}<p class="placeholder">{{ A.placeholder }}</p>{% endif %}
+  {% elif s.angle == 'institution' %}
+    <div class="angle__grid">
+      <div><h2>{{ A.title }}</h2><p class="lead">{{ A.lead }}</p></div>
+      <blockquote class="angle__quote">{{ A.quote }}</blockquote>
+    </div>
+  {% elif s.angle == 'expertise' %}
+    <h2>{{ A.title }}</h2><p class="lead">{{ A.lead }}</p>
+    <div class="cols2">{% for h, p in A.cols %}<div class="col"><h3>{{ h }}</h3><p>{{ p }}</p></div>{% endfor %}</div>
+  {% elif s.angle == 'transparency' %}
+    <h2>{{ A.title }}</h2><p class="lead">{{ A.lead }}</p>
+    <div class="table-wrap"><table class="track">
+      <thead><tr><th>{{ 'Étape' if t.lang=='fr' else 'Stage' }}</th><th>{{ 'Qui agit' if t.lang=='fr' else 'Who acts' }}</th><th>{{ 'Délai' if t.lang=='fr' else 'Timing' }}</th></tr></thead>
+      <tbody>{% for a, b, c in A.rows %}<tr><td><span class="num">{{ loop.index }}</span>{{ a }}</td><td>{{ b }}</td><td>{{ c }}</td></tr>{% endfor %}</tbody>
+    </table></div>
+    <p class="placeholder">{{ A.placeholder }}</p>
+    <form class="trackform" data-track-form>
+      <h3>{{ A.track_title }}</h3><p>{{ A.track_intro }}</p>
+      <div class="trackform__row">
+        <label><span>{{ t.f_name }}</span><input name="name" required autocomplete="name"></label>
+        <label><span>{{ A.track_ref }}</span><input name="ref" required></label>
+        <button class="btn btn--primary" type="submit">{{ A.track_send }}</button>
+      </div>
+    </form>
+  {% elif s.angle == 'documents' %}
+    <h2>{{ A.title }}</h2><p class="lead">{{ A.lead }}</p>
+    <ol class="mini-steps">{% for h, p in A.points %}<li><strong>{{ h }}</strong><span>{{ p }}</span></li>{% endfor %}</ol>
+  {% elif s.angle == 'team' %}
+    <h2>{{ A.title }}</h2><p class="lead">{{ A.lead }}</p>
+    <ul class="team">{% for r, nm in A.members %}<li><span class="team__ph" aria-hidden="true">{{ icon('user') }}</span><strong>{{ nm }}</strong><span>{{ r }}</span></li>{% endfor %}</ul>
+    <p class="placeholder">{{ A.placeholder }}</p>
+  {% elif s.angle == 'saturday' %}
+    <div class="angle__grid">
+      <div><h2>{{ A.title }}</h2><p class="lead">{{ A.lead }}</p><p class="placeholder">{{ A.placeholder }}</p></div>
+      <div class="week" aria-hidden="true">{% for d in (['L','M','M','J','V','S','D'] if t.lang=='fr' else ['M','T','W','T','F','S','S']) %}<span class="{{ 'on' if loop.index <= 6 else '' }} {{ 'sat' if loop.index == 6 else '' }}">{{ d }}</span>{% endfor %}</div>
+    </div>
+  {% else %}
+    <div class="angle__grid angle__grid--simple"><h2>{{ A.title }}</h2><p class="lead">{{ A.lead }}</p></div>
+  {% endif %}
+  </div>
+</section>
+{% endif %}
+{% endmacro %}
+
+{# ---------------- Le notaire ---------------- #}
+{% macro notary(t) %}
+<section class="section notary">
+  <div class="wrap notary__grid">
+    <div><h2>{{ t.notary_title }}</h2><p class="notary__def">{{ t.notary_def }}</p></div>
+    <ul class="notary__points">{% for h, p in t.notary_points %}<li><strong>{{ h }}</strong><span>{{ p }}</span></li>{% endfor %}</ul>
+  </div>
+</section>
+{% endmacro %}
+
+{# ---------------- Domaines : aperçu (accueil) ---------------- #}
+{% macro services_overview(s, t, P, H, IMG) %}
+<section class="section services" id="domaines">
+  <div class="wrap">
+    <div class="section__head"><h2>{{ t.services_title }}</h2><p class="lead">{{ t.services_intro }}</p></div>
+    <ul class="services__list">
+      {% for k, title, text in t.services %}
+      <li class="svc">
+        {% if s.theme in ('accueil', 'notaria', 'institutionnel') %}<img class="svc__img" src="{{ U(IMG.svc[k], 700) }}" alt="" loading="lazy">{% endif %}
+        <span class="svc__icon" aria-hidden="true">{{ icon('svc-' + k) }}</span><span class="svc__num">{{ '%02d' % loop.index }}</span>
+        <h3>{{ title }}</h3><p>{{ text }}</p>
+        <a class="svc__more" href="{{ P.services }}#{{ k }}">{{ H.more }} <span aria-hidden="true">→</span></a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endmacro %}
+
+{# ---------------- Domaines : détail ---------------- #}
+{% macro services_detail(s, t, IMG, DET, DL) %}
+<section class="section svc-detail">
+  <div class="wrap">
+    {% for k, title, text in t.services %}
+    <article class="svcd" id="{{ k }}">
+      <figure class="svcd__img"><img src="{{ U(IMG.svc[k], 1200) }}" alt="" loading="lazy"></figure>
+      <div class="svcd__body">
+        <span class="svcd__num">{{ '%02d' % loop.index }}</span>
+        <h2>{{ title }}</h2>
+        <p class="lead">{{ text }}</p>
+        <h3>{{ DL }}</h3>
+        <ul class="ticks">{% for d in DET[k] %}<li>{{ icon('check') }}<span>{{ d }}</span></li>{% endfor %}</ul>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endmacro %}
+
+{% macro abroad(t) %}
+<section class="section abroad">
+  <div class="wrap abroad__grid">
+    <div><h2>{{ t.abroad_title }}</h2><p class="lead">{{ t.abroad_intro }}</p><p class="note">{{ icon('shield') }} {{ t.pay_note }}</p></div>
+    <ol class="abroad__steps">{% for h, p in t.abroad_points %}<li><strong>{{ h }}</strong><span>{{ p }}</span></li>{% endfor %}</ol>
+  </div>
+</section>
+{% endmacro %}
+
+{% macro steps(t) %}
+<section class="section steps">
+  <div class="wrap">
+    <div class="section__head"><h2>{{ t.steps_title }}</h2></div>
+    <ol class="steps__list">{% for h, p in t.steps %}<li><span class="steps__n">{{ loop.index }}</span><div><h3>{{ h }}</h3><p>{{ p }}</p></div></li>{% endfor %}</ol>
+  </div>
+</section>
+{% endmacro %}
+
+{% macro docs(s, t) %}
+<section class="section docs" id="pieces">
+  <div class="wrap">
+    <div class="docs__box" data-docs>
+      <div class="docs__tabs" role="tablist" aria-label="{{ t.docs_title }}">
+        {% for k, tab, title, items in t.docs %}<button type="button" role="tab" id="tab-{{ k }}" aria-controls="panel-{{ k }}" aria-selected="{{ 'true' if loop.first else 'false' }}" data-tab="{{ k }}">{{ tab }}</button>{% endfor %}
+      </div>
+      {% for k, tab, title, items in t.docs %}
+      <div class="docs__panel" role="tabpanel" id="panel-{{ k }}" aria-labelledby="tab-{{ k }}" data-panel="{{ k }}" data-title="{{ title }}" {% if not loop.first %}hidden{% endif %}>
+        <h2 class="docs__h">{{ title }}</h2>
+        <ul class="checklist">{% for it in items %}<li><label><input type="checkbox" value="{{ it }}"><span>{{ it }}</span></label></li>{% endfor %}</ul>
+        <p class="docs__status"><strong data-count>0</strong> {{ t.docs_status }} {{ items|length }}</p>
+      </div>
+      {% endfor %}
+      <div class="docs__actions">
+        {% if s.whatsapp %}<button class="btn btn--primary" type="button" data-docs-send="wa">{{ icon('chat') }} {{ t.docs_send_wa }}</button>{% endif %}
+        {% if s.email %}<button class="btn btn--ghost" type="button" data-docs-send="mail">{{ icon('mail') }} {{ t.docs_send_mail }}</button>{% endif %}
+      </div>
+      <p class="docs__note">{{ t.docs_note }}</p>
+    </div>
+    <p class="note docs__pay">{{ icon('shield') }} {{ t.pay_note }}</p>
+  </div>
+</section>
+{% endmacro %}
+
+{# Bandeau image + texte #}
+{% macro band(title, text, cta_label, cta_href, photo, flip=False) %}
+<section class="section band{% if flip %} band--flip{% endif %}">
+  <div class="wrap band__grid">
+    <figure class="band__img"><img src="{{ U(photo, 1200) }}" alt="" loading="lazy"></figure>
+    <div class="band__body"><h2>{{ title }}</h2><p class="lead">{{ text }}</p><a class="btn btn--primary" href="{{ cta_href }}">{{ cta_label }}</a></div>
+  </div>
+</section>
+{% endmacro %}
+
+{% macro office(s, t, H, office_intro, seal, IMG, full=True, more_href=None) %}
+<section class="section office" id="etude">
+  <div class="wrap office__grid">
+    <figure class="office__photo office__photo--img"><img src="{{ U(IMG.office, 1100) }}" alt="{{ H.photo_note }}" loading="lazy"><figcaption><span class="office__seal" aria-hidden="true">{{ seal | safe }}</span>{{ H.photo_note }} — {{ t.office_photo }}</figcaption></figure>
+    <div>
+      <h2>{{ t.office_title }}</h2>
+      <p class="lead">{{ office_intro }}</p>
+      <p>{{ t.office_auth }}</p>
+      {% if full %}
+      <dl class="facts">
+        {% if s.charge %}<div><dt>{{ t.facts.charge }}</dt><dd>{{ charge(s, t) }}</dd></div>{% endif %}
+        {% if s.since_note %}<div><dt>{{ t.facts.since }}</dt><dd>{{ s.since_note }}</dd></div>{% endif %}
+        <div><dt>{{ t.facts.address }}</dt><dd>{{ addr(s, t) }}{% if s.addr_note and t.lang=='fr' %}<br><small>{{ s.addr_note }}</small>{% endif %}</dd></div>
+        {% if s.email %}<div><dt>{{ t.facts.email }}</dt><dd><a href="mailto:{{ s.email }}">{{ s.email }}</a></dd></div>{% endif %}
+      </dl>
+      {% endif %}
+      {% if more_href %}<p class="office__link"><a class="link-arrow" href="{{ more_href }}">{{ H.office_cta }}</a></p>{% endif %}
+    </div>
+  </div>
+</section>
+{% endmacro %}
+
+{% macro faq(t, items, head=True, more_href=None, more_label=None) %}
+<section class="section faq" id="questions">
+  <div class="wrap faq__grid">
+    <div class="section__head">{% if head %}<h2>{{ t.faq_title }}</h2>{% endif %}{% if more_href %}<a class="link-arrow" href="{{ more_href }}">{{ more_label }}</a>{% endif %}</div>
+    <div class="faq__list">
+      {% for q, a in items %}<details{% if loop.first %} open{% endif %}><summary>{{ q }}<span class="faq__icon" aria-hidden="true"></span></summary><p>{{ a }}</p></details>{% endfor %}
+    </div>
+  </div>
+</section>
+{% endmacro %}
+
+{% macro contact_band(s, t, P, H) %}
+<section class="cband">
+  <div class="wrap cband__in">
+    <div><h2>{{ H.contact_band }}</h2><p>{{ H.contact_band_text }}</p></div>
+    <div class="cband__actions">
+      <a class="btn btn--primary" href="{{ P.contact }}">{{ t.cta_rdv }}</a>
+      <a class="btn btn--ghost" href="{{ s.phones[0].href }}">{{ icon('phone') }} {{ s.phones[0].label }}</a>
+    </div>
+  </div>
+</section>
+{% endmacro %}
+
+{% macro contact(s, t) %}
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <div class="contact__grid">
+      <div class="contact__info">
+        <dl>
+          <div><dt>{{ icon('pin') }} {{ t.c_address }}</dt><dd>{{ addr(s, t) }}</dd></div>
+          <div><dt>{{ icon('phone') }} {{ t.c_phone }}</dt><dd>{% for p in s.phones %}<a href="{{ p.href }}">{{ p.label }}</a>{% if not loop.last %}<br>{% endif %}{% endfor %}</dd></div>
+          {% if s.whatsapp %}<div><dt>{{ icon('chat') }} {{ t.c_whatsapp }}</dt><dd><a href="https://wa.me/{{ s.whatsapp }}" target="_blank" rel="noopener">{{ s.whatsapp_label }}</a></dd></div>{% endif %}
+          {% if s.email %}<div><dt>{{ icon('mail') }} {{ t.c_email }}</dt><dd><a href="mailto:{{ s.email }}">{{ s.email }}</a></dd></div>{% endif %}
+          {% if s.saturday %}<div><dt>{{ icon('clock') }} {{ t.c_hours }}</dt><dd>{{ t.angle.saturday.badge }} — {{ t.angle.saturday.placeholder }}</dd></div>{% endif %}
+        </dl>
+        <div class="map"><iframe title="{{ t.map_title }}" src="{{ s.map_src }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+        <a class="link-arrow" href="{{ s.map_link }}" target="_blank" rel="noopener">{{ t.map_link }}</a>
+      </div>
+      <form class="contact__form" data-contact-form>
+        <h2 class="contact__h">{{ t.contact_title }}</h2>
+        <label><span>{{ t.f_name }}</span><input name="name" required autocomplete="name"></label>
+        <label><span>{{ t.f_country }} <em>{{ t.f_optional }}</em></span><input name="country" autocomplete="address-level2"></label>
+        <label><span>{{ t.f_subject }}</span><select name="subject">{% for o in t.f_subjects %}<option>{{ o }}</option>{% endfor %}</select></label>
+        <label><span>{{ t.f_message }}</span><textarea name="message" rows="5" placeholder="{{ t.f_placeholder }}"></textarea></label>
+        <div class="contact__actions">
+          {% if s.whatsapp %}<button class="btn btn--primary" type="submit" value="wa">{{ icon('chat') }} {{ t.f_send_wa }}</button>{% endif %}
+          {% if s.email %}<button class="btn btn--ghost" type="submit" value="mail">{{ icon('mail') }} {{ t.f_send_mail }}</button>{% endif %}
+        </div>
+        <p class="contact__note">{{ t.f_note }}</p>
+      </form>
+    </div>
+  </div>
+</section>
+{% endmacro %}

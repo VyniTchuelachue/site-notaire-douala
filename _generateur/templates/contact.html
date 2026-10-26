@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ m.page_hero(s, t, P, PI.contact[0], PI.contact[1], IMG.banner.contact, NAV[0][2]) }}
+{{ m.contact(s, t) }}
+{% if s.angle == 'transparency' %}{{ m.angle(s, t, IMG) }}{% endif %}
+{% endblock %}
